@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>
+            FetchApi Trial
+        </title>
+    </head>
+    <body>
+        <div class = "full">
+            <div id = "heading">
+                <h1>
+                    Data:
+                </h1>
+            </div>
+            <div id = "content">
+                <p>
+
+                </p>
+            </div>
+            <button id ="button" onclick="getdata()">Info</button>
+
+            <script>
+                    const a = document.getElementById('heading');
+                    const b = document.getElementById('content');
+                    const c = document.getElementById('button');
+
+                    async function getdata()
+                    {
+                        try
+                        {   
+                            b.innerHTML = 'loading';
+                            c.style.display = 'none';
+                            const backend = await fetch("https://jsonplaceholder.typicode.com/posts");
+                            const res = await backend.json();
+
+                            b.innerHTML = "<div>"+"<p>userId: "+res[0].userId+"</p>"+"<p>Id: "+res[0].id+"</p>"+"<p>Title: "+res[0].title+"</p>"+"<p>Body: "+res[0].body+"</p>"+"</div>"
+                        }
+                        catch(error)
+                        {
+                            b.innerHTML = "Error in loading"
+                        }
+                    }
+            </script>
+
+
+
+        </div>
+    </body>
+</html>
